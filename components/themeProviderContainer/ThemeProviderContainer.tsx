@@ -1,12 +1,19 @@
+import { useRecoilValue } from "recoil";
 import { ThemeProvider } from "styled-components";
+import { themeAtom } from "../../store/theme/theme";
 import GlobalStyle from "../../styles/GlobalStyle";
-import { lightTheme } from "../../styles/theme";
+import { darkTheme, lightTheme } from "../../styles/theme";
+import PageTemplate from "../common/pageTemplate/PageTemplate";
 
 const ThemeProviderContainer = ({ Component, pageProps }: any): JSX.Element => {
+  const currentTheme = useRecoilValue(themeAtom);
+
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={currentTheme === "LIGHT" ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <PageTemplate>
+        <Component {...pageProps} />
+      </PageTemplate>
     </ThemeProvider>
   );
 };
