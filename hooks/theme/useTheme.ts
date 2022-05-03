@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { THEME_KEY } from "../../constants/localStorage.constants";
 import { ETheme } from "../../enum/Theme.enum";
@@ -15,10 +15,6 @@ const useTheme = () => {
     local.set(THEME_KEY, String(switchTheme));
     setCurrentTheme(switchTheme);
   }, [DARK, LIGHT, currentTheme, setCurrentTheme]);
-
-  useEffect(() => {
-    console.log(currentTheme);
-  }, [currentTheme]);
 
   return {
     toggleChangeTheme,
